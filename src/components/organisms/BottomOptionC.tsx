@@ -24,11 +24,11 @@ const BottomOptionC = ({ handleType}: Props) => {
       {typeFilter == typeList.ALL && (
         <>
           <ButtonC testID='btn-won' onPress={() => { changeType(typeList.WON) }}>Ganados</ButtonC>
-          <ButtonC testID='btn-redeemed' onPress={() => { handleType(typeList.REDEEMED) }}>Canjeados</ButtonC>
+          <ButtonC testID='btn-redeemed' onPress={() => { changeType(typeList.REDEEMED) }}>Canjeados</ButtonC>
         </>
       )}
       {(typeFilter == typeList.REDEEMED || typeFilter == typeList.WON) &&
-        <ButtonC testID='btn-all' onPress={() => { handleType(typeList.ALL) }}>Todos</ButtonC>
+        <ButtonC testID='btn-all' onPress={() => { changeType(typeList.ALL) }}>Todos</ButtonC>
       }
     </View>
   )
