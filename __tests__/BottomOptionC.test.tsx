@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import BottomOptionC, { typeList } from '../src/components/organisms/BottomOptionC';
+import BottomOptionC, { TYPE_LIST } from '../src/components/organisms/BottomOptionC';
 
 describe('Mostrar los botones segun el tipo que elija', () => {
   it('deberia ocultar el boton cuando es presionado', () => {
-    const { getByTestId, queryByTestId } = render(<BottomOptionC handleType={(type: typeList) => { }} />);
+    const { getByTestId, queryByTestId } = render(<BottomOptionC nameFilter={TYPE_LIST.ALL} handleFilter={(type: TYPE_LIST) => { }} />);
 
     // Verificar que el componente es visible
     expect(getByTestId('btn-won')).toBeDefined();
@@ -19,7 +19,7 @@ describe('Mostrar los botones segun el tipo que elija', () => {
   });
 
   it('deberia mostrar otro boton cuando el boton cuando es presionado', () => {
-    const { getByTestId, queryByTestId } = render(<BottomOptionC handleType={(type: typeList) => { }} />);
+    const { getByTestId, queryByTestId } = render(<BottomOptionC nameFilter={TYPE_LIST.ALL} handleFilter={(type: TYPE_LIST) => { }} />);
 
     // Verificar que el componente es visible
     expect(getByTestId('btn-won')).toBeDefined();

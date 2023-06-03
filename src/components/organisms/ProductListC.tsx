@@ -1,15 +1,22 @@
 import { StyleSheet, Text, View, FlatList, ListRenderItem, ActivityIndicator, Dimensions, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useMemo, useCallback } from 'react'
 import ProductItemC, { IProduct } from '../molecules/ProductItemC'
 import TextC from '../atoms/TextC'
 
 type Props = {
   data: IProduct[],
-  goDetail: (product: IProduct) => void
+  goDetail: (product: IProduct) => void, 
+  refList: any
 }
 const HEIGHT = Dimensions.get('screen').height
 
-const ProductListC = ({ data, goDetail }: Props) => {
+const ProductListC = ({ data, goDetail, refList }: Props) => {
+
+  const renderItem: ListRenderItem<IProduct> = ({ item }) => {
+    return <ProductItemC info={item} onPress={(product: IProduct) => { goDetail(product) }} key={item.id} />
+  }
+
+  const memorizedValue = useMemo(() => renderItem, [data])
 
   return (
     <View>
@@ -21,11 +28,13 @@ const ProductListC = ({ data, goDetail }: Props) => {
             <TextC weight='bold' size='body1'>Cargando...</TextC>
           </View>
         )}
-        <ScrollView contentContainerStyle={{ gap: 8 }}>
-          {data.map((item, index) => (
-            <ProductItemC info={item} onPress={(product: IProduct) => { goDetail(product) }} key={item.id} />
-          ))}
-        </ScrollView>
+        <FlatList
+          ref={refList}
+          renderItem={memorizedValue}
+          initialNumToRender={5}
+          keyExtractor={(item) => item.id}
+          data={data}
+          contentContainerStyle={{ gap: 8 }} />
       </View>
       <View style={{ height: 20 }} />
     </View>

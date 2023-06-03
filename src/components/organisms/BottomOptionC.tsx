@@ -1,34 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import ButtonC from '../molecules/ButtonC'
 
-type Props = {
-  handleType: (type: typeList) => void,
-  // typeFilter: typeList
+type BottomOptionCProps = {
+  handleFilter: (type: TYPE_LIST) => void,
+  nameFilter: TYPE_LIST
 }
 
-export enum typeList {
+export enum TYPE_LIST {
   ALL, WON, REDEEMED
 }
 
-const BottomOptionC = ({ handleType}: Props) => {
-
-  const [typeFilter, setTypeFilter] = useState(typeList.ALL)
-  const changeType = (type: typeList) => {
-    setTypeFilter(type)
-    handleType(type)
-  }
+const BottomOptionC = ({ handleFilter, nameFilter }: BottomOptionCProps) => {
 
   return (
     <View style={styles.container}>
-      {typeFilter == typeList.ALL && (
+      {nameFilter == TYPE_LIST.ALL && (
         <>
-          <ButtonC testID='btn-won' onPress={() => { changeType(typeList.WON) }}>Ganados</ButtonC>
-          <ButtonC testID='btn-redeemed' onPress={() => { changeType(typeList.REDEEMED) }}>Canjeados</ButtonC>
+          <ButtonC testID='btn-won' onPress={() => { handleFilter(TYPE_LIST.WON) }}>Ganados</ButtonC>
+          <ButtonC testID='btn-redeemed' onPress={() => { handleFilter(TYPE_LIST.REDEEMED) }}>Canjeados</ButtonC>
         </>
       )}
-      {(typeFilter == typeList.REDEEMED || typeFilter == typeList.WON) &&
-        <ButtonC testID='btn-all' onPress={() => { changeType(typeList.ALL) }}>Todos</ButtonC>
+      {(nameFilter == TYPE_LIST.REDEEMED || nameFilter == TYPE_LIST.WON) &&
+        <ButtonC testID='btn-all' onPress={() => { handleFilter(TYPE_LIST.ALL) }}>Todos</ButtonC>
       }
     </View>
   )

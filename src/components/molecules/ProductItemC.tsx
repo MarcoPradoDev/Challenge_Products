@@ -50,6 +50,7 @@ export default ProductItemC
 const styles = StyleSheet.create({
   container: {
     gap: 10,
+    // height: 65
   },
   container_image: {
     padding: 5,

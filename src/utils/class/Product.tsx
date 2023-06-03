@@ -1,5 +1,5 @@
 import { IProduct } from "../../components/molecules/ProductItemC"
-import { typeList } from "../../components/organisms/BottomOptionC"
+import { TYPE_LIST } from "../../components/organisms/BottomOptionC"
 
 export class Product implements IProduct {
   createdAt: string
@@ -20,14 +20,14 @@ export class Product implements IProduct {
 }
 
 export class ProductList {
-  static filterByType(products: IProduct[], type: typeList): IProduct[] {
+  static filterByType(products: IProduct[], type: TYPE_LIST): IProduct[] {
     switch (type) {
-      case typeList.REDEEMED:
+      case TYPE_LIST.REDEEMED:
         return products.filter(item => item.is_redemption == true)
-      case typeList.WON:
+      case TYPE_LIST.WON:
         return products.filter(item => item.is_redemption == false)
       default:
-      case typeList.ALL:
+      case TYPE_LIST.ALL:
         return products
     }
   }

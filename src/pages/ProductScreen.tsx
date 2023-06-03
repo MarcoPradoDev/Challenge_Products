@@ -1,6 +1,6 @@
 import { StyleSheet, View, ScrollView, StatusBar } from 'react-native'
 import React, { useState } from 'react'
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import HeaderProductC from '../components/molecules/HeaderProductC'
 import ProductInfoC from '../components/organisms/ProductInfoC'
 import { IProduct } from '../components/molecules/ProductItemC'
